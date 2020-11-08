@@ -1,14 +1,12 @@
 import React from 'react';
+import LandingPage from './views/LandingPage';
+//import Menu from './Menu'
 import './App.css';
 
-import Menu from './Menu';
-
-function App() {
+export default function App() {
     return (
         <div className="App">
-            <Menu />
+            <LandingPage />
         </div>
     );
 }
-
-export default App;

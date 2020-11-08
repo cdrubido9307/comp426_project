@@ -28,7 +28,7 @@ export default function SimpleMenu() {
         <div>
             <Button className={classes.submit} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 Open Menu
-      </Button>
+            </Button>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
