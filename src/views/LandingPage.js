@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-    { title: 'Home', url: '#' },
-    { title: 'Services', url: '#' },
-    { title: 'Delivery', url: '#' },
-    { title: 'About', url: '#' },
-    { title: 'Contact', url: '#' },
+    { title: 'Home', path: '/' },
+    { title: 'Services', path: '/services' },
+    { title: 'Delivery', path: '/delivery' },
+    { title: 'About', path: '/about' },
+    { title: 'Contact', path: '/contact' },
 ];
 
 export default function LandingPage() {

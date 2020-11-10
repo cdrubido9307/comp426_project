@@ -9,19 +9,12 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '20px'
-    },
-    b1: {
-        marginRight: '320px'
-    },
-    b2: {
-
-    },
-    b3: {
-        marginLeft: '320px'
+        paddingTop: '20px',
+        paddingLeft: '15px',
+        paddingRight: '15px',
+        background: '#FFB74D'
     },
     icons: {
         fontSize: '50px'
@@ -34,14 +27,42 @@ export default function Motivation() {
     return (
         <div>
             <Box className={classes.root}>
-                <Box className={classes.b1}>
-                    <LocalShippingIcon className={classes.icons} />
-                </Box>
-                <Box className={classes.b2}>
-                    <PlaceIcon className={classes.icons} />
-                </Box>
-                <Box className={classes.b3}>
+                <Box
+                    container
+                    spacing={0}
+                    align='center'
+                    justify='center'
+                    direction='column'
+                    paddingRight='100px'
+                >
                     <SecurityIcon className={classes.icons} />
+                    <h3>Reliable</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                </Box>
+
+                <Box
+                    container
+                    spacing={0}
+                    align='center'
+                    justify='center'
+                    direction='column'
+                >
+                    <PlaceIcon className={classes.icons} />
+                    <h3>Worldwide</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                </Box>
+                
+                <Box
+                    container
+                    spacing={0}
+                    align='center'
+                    justify='center'
+                    direction='column'
+                    paddingLeft='100px'
+                >
+                    <LocalShippingIcon className={classes.icons} />
+                    <h3>Delivery</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                 </Box>
             </Box>
         </div>
