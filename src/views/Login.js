@@ -13,18 +13,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
-import { Link as RDLink } from 'react-router-dom'; 
+import { Link as RDLink } from 'react-router-dom';
 
 const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: orange[800],
-      },
-      secondary: {
-        main: orange[600],
-      },
+  palette: {
+    primary: {
+      main: orange[800],
     },
-  });
+    secondary: {
+      main: orange[600],
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#F57C00',
     color: '#FFF',
     '&:hover': {
-        backgroundColor: '#FB8C00'
+      backgroundColor: '#FB8C00'
     },
   },
 }));
@@ -65,67 +65,67 @@ export default function SignIn() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon className={classes.lockout}/>
+          <LockOutlinedIcon className={classes.lockout} />
         </Avatar>
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <ThemeProvider theme={theme}> 
-        <form className={classes.form} noValidate>
-          <TextField className={classes.input}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField className={classes.input} theme={theme}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <RDLink to='/' style={{textDecoration: 'none'}}>
-            <Button
-              type="submit"
+        <ThemeProvider theme={theme}>
+          <form className={classes.form} noValidate>
+            <TextField className={classes.input}
+              variant="outlined"
+              margin="normal"
+              required
               fullWidth
-              variant="contained"
-              className={classes.submit}
-            >
-              Login
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField className={classes.input} theme={theme}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <RDLink to='/' style={{ textDecoration: 'none' }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                className={classes.submit}
+              >
+                Login
             </Button>
-          </RDLink>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <RDLink to='/signup' style={{textDecoration: 'none'}}>
+            </RDLink>
+            <Grid container>
+              <Grid item xs>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </RDLink>
+                  Forgot password?
+              </Link>
+              </Grid>
+              <Grid item>
+                <RDLink to='/signup' style={{ textDecoration: 'none' }}>
+                  <Link href="#" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </RDLink>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
+          </form>
         </ThemeProvider>
       </div>
-      
+
     </Container>
   );
 }

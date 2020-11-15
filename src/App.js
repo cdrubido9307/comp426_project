@@ -11,19 +11,19 @@ import {
 
 export default function App() {
   return (
-    // <div className="App">
-    //   <Router>
-    //     <Switch>
-    //         <Route exact path="/" ><LandingPage /></Route>
-    //         <Route path="/login"><Login /></Route>
-    //         <Route path="/signup"><Signup /></Route>
-    //     </Switch>
-    //   </Router>
-    // </div>
-
     <div className="App">
-      <Testing/>
+      <Router>
+        <Switch>
+            <Route exact path="/" ><LandingPage /></Route>
+            <Route path="/login"><Login /></Route>
+            <Route path="/signup"><Signup /></Route>
+        </Switch>
+      </Router>
     </div>
+
+    // <div className="App">
+    //   <Testing/>
+    // </div>
   );
 }
 
