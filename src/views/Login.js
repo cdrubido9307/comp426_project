@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,9 +11,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
-import { Link as RDLink } from 'react-router-dom';
+import { Link as RDLink, useHistory } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const theme = createMuiTheme({
   palette: {
@@ -58,6 +60,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setError("");
+      setLoading(true);
+      console.log(emailRef.current.value);
+      console.log(passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
+      console.log("here");
+      history.push("/user-dashboard")
+    } catch {
+      setError("Failed to login. Please verify your credentials!");
+    }
+
+    setLoading(false);
+  }
+
   const classes = useStyles();
 
   return (
@@ -70,14 +98,17 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
+        <br/>
+        {error && <Alert severity="error">{error}</Alert>}
         <ThemeProvider theme={theme}>
-          <form className={classes.form} noValidate>
+          <form onSubmit={handleSubmit} className={classes.form} noValidate>
             <TextField className={classes.input}
               variant="outlined"
               margin="normal"
               required
               fullWidth
               id="email"
+              inputRef={emailRef}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -92,14 +123,10 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              inputRef={passwordRef}
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <RDLink to='/' style={{ textDecoration: 'none' }}>
-              <Button
+              <Button disabled={loading}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -107,7 +134,6 @@ export default function SignIn() {
               >
                 Login
             </Button>
-            </RDLink>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

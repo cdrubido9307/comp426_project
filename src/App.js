@@ -2,7 +2,8 @@ import './App.css';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import LandingPage from './views/LandingPage';
-import Testing from './views/Testing';
+import UserDashboard from './views/UserDashboard';
+import { AuthProvider } from './contexts/AuthContext';
 
 import {
   BrowserRouter as Router,
@@ -11,19 +12,18 @@ import {
 
 export default function App() {
   return (
+    <AuthProvider>
     <div className="App">
       <Router>
         <Switch>
-            <Route exact path="/" ><LandingPage /></Route>
-            <Route path="/login"><Login /></Route>
-            <Route path="/signup"><Signup /></Route>
+            <Route exact path="/" component={LandingPage}/>
+            <Route path="/user-dashboard" component={UserDashboard}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/signup" component={Signup}/>
         </Switch>
       </Router>
     </div>
-
-    // <div className="App">
-    //   <Testing/>
-    // </div>
+    </AuthProvider>
   );
 }
 
