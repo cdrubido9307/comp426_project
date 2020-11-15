@@ -8,12 +8,17 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
     "@testing-library/user-event": "^12.2.0",
+    "google-map-react": "^2.1.9",
+    "google-maps-react": "^2.0.6",
     "material-ui-icons": "^1.0.0-beta.36",
     "material-ui-phone-number": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-phone-input-2": "^2.13.9",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-scroll": "^1.8.1",
+    "reactstrap": "^8.7.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

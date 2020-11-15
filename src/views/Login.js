@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
+import { Link as RDLink } from 'react-router-dom'; 
 
 const theme = createMuiTheme({
     palette: {
@@ -48,7 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#f57c00',
+    backgroundColor: '#F57C00',
+    color: '#FFF',
+    '&:hover': {
+        backgroundColor: '#FB8C00'
+    },
   },
 }));
 
@@ -63,7 +68,7 @@ export default function SignIn() {
           <LockOutlinedIcon className={classes.lockout}/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <ThemeProvider theme={theme}> 
         <form className={classes.form} noValidate>
@@ -93,15 +98,16 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
+          <RDLink to='/' style={{textDecoration: 'none'}}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              className={classes.submit}
+            >
+              Login
+            </Button>
+          </RDLink>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
@@ -109,9 +115,11 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <RDLink to='/signup' style={{textDecoration: 'none'}}>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </RDLink>
             </Grid>
           </Grid>
         </form>
