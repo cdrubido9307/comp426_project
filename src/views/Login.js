@@ -74,10 +74,7 @@ export default function SignIn() {
     try {
       setError("");
       setLoading(true);
-      console.log(emailRef.current.value);
-      console.log(passwordRef.current.value);
       await login(emailRef.current.value, passwordRef.current.value);
-      console.log("here");
       history.push("/user-dashboard")
     } catch {
       setError("Failed to login. Please verify your credentials!");

@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
 
+  const firstRef = useRef();
+  const lastRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -71,7 +73,7 @@ export default function SignUp() {
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(firstRef.current.value, lastRef.current.value, emailRef.current.value, passwordRef.current.value);
       history.push("/user-dashboard");
     } catch {
       setError('Failed to create an account');
@@ -96,6 +98,31 @@ export default function SignUp() {
         <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                inputRef={firstRef}
+                label="First Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                inputRef={lastRef}
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"

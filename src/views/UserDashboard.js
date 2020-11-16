@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -24,6 +25,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { db } from '../firebase';
 
 const drawerWidth = 240;
 
@@ -105,12 +107,16 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  username: {
+    marginTop: 5
+  },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState("");
+  const [user, setUser] = useState("");
   const history = useHistory();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
@@ -119,8 +125,6 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  console.log(currentUser);
 
   async function handleLogout() {
     setError("");
@@ -134,8 +138,19 @@ export default function Dashboard() {
   }
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const clientRef = db.collection('client');
 
+  function handleGetUser() {
+    if (currentUser != null){
+      clientRef.doc(currentUser.uid).get().then(snapshot => setUser(snapshot.data()));
+    } 
+  }
 
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
+  const name = user.firstName + " " + user.lastName;
 
   //const [setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = useState(false);
@@ -152,8 +167,6 @@ export default function Dashboard() {
   const handleClose = () => {
     setAnchorEl(false);
   };
-
-
 
 
   return (
@@ -173,15 +186,10 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Shipping Dashboard
           </Typography>
-          {/* <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton> */}
+          <Typography className={classes.username} variant="subtitle1" gutterBottom>
+  {name}
+      </Typography>
+          
           <div>
             <IconButton
               aria-label="account of current user"
@@ -207,20 +215,12 @@ export default function Dashboard() {
               open={open2}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={() => {
                 handleClose();
                 handleLogout();
               }}>Sign out</MenuItem>
             </Menu>
           </div>
-
-
-
-
-
-
-
         </Toolbar>
       </AppBar>
       <Drawer
