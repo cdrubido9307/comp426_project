@@ -97,6 +97,10 @@ export default function SignIn() {
     history.push("/");
   }
 
+  function handleForgotPassword() {
+    history.push("/forgot-password");
+  }
+
   const classes = useStyles();
 
   return (
@@ -161,7 +165,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" onClick={handleForgotPassword}>
                   Forgot password?
               </Link>
               </Grid>

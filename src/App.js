@@ -3,6 +3,7 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import LandingPage from './views/LandingPage';
 import UserDashboard from './views/UserDashboard';
+import ForgotPassword from "./views/ForgotPassword"
 import { AuthProvider } from './contexts/AuthContext';
 
 import {
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/user-dashboard" component={UserDashboard}/>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/forgot-password" component={ForgotPassword} />
         </Switch>
       </Router>
     </div>
