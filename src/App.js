@@ -1,27 +1,27 @@
-import React from 'react';
+import './App.css';
+import Login from './views/Login';
+import Signup from './views/Signup';
+import LandingPage from './views/LandingPage';
+import About from './views/About';
 
 import {
     BrowserRouter as Router,
     Route,
     Switch
-  } from "react-router-dom";
-
-import LandingPage from './views/LandingPage';
-import Login from './views/Login';
-import Signup from './views/Signup';
-
-
-//import Menu from './Menu'
-import './App.css';
+} from 'react-router-dom';
 
 export default function App() {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/" ><LandingPage /></Route>
-                <Route path="/login"><Login /></Route>
-                <Route path="/signup"><Signup /></Route>
-            </Switch>
-        </Router>
+        <div className='App'>
+            <Router>
+                <Switch>
+                    <Route exact path='/' component={LandingPage} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/signup' component={Signup} />
+                    <Route path='/about' component={About} />
+                </Switch>
+            </Router>
+        </div>
     );
 }
+
