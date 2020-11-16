@@ -3,7 +3,8 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import LandingPage from './views/LandingPage';
 import UserDashboard from './views/UserDashboard';
-import ForgotPassword from "./views/ForgotPassword"
+import ForgotPassword from "./views/ForgotPassword";
+import CreateShipment from "./views/CreateShipment";
 import { AuthProvider } from './contexts/AuthContext';
 
 import {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/forgot-password" component={ForgotPassword} />
+            <Route path="/create-shipement" component={CreateShipment} />
         </Switch>
       </Router>
     </div>
