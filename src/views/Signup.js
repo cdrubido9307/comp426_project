@@ -14,17 +14,20 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import { Link as RDLink, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: orange[800],
-      },
-      secondary: {
-        main: orange[600],
-      },
+  palette: {
+    primary: {
+      main: orange[800],
     },
-  });
+    secondary: {
+      main: orange[600],
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,8 +50,15 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFF',
     '&:hover': {
       backgroundColor: '#FB8C00'
+    },
   },
+  toolbar: {
+    background: 'none'
   },
+  close: {
+    color: '#F57C00',
+    marginLeft: 'auto',
+  }
 }));
 
 export default function SignUp() {
@@ -65,8 +75,8 @@ export default function SignUp() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    if(passwordRef.current.value !== passwordConfirmRef.current.value) {
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match. Please try again!');
     }
 
@@ -81,108 +91,127 @@ export default function SignUp() {
     setLoading(false)
   }
 
+  function handleOnClose() {
+    history.push("/");
+  }
+
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <br/>
-        {error && <Alert severity="error">{error}</Alert>}
-        <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit} className={classes.form} noValidate>
-          <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                inputRef={firstRef}
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                inputRef={lastRef}
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                inputRef={emailRef}
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                inputRef={passwordRef}
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Confirm Password"
-                type="password"
-                id="password-confirm"
-                inputRef={passwordConfirmRef}
-                autoComplete="current-password"
-              />
-            </Grid>
-          </Grid>
-            <Button
-              disabled={loading}
-              type="submit"
-              fullWidth
-              variant="contained"
-              className={classes.submit}
+    <div>
+      <AppBar className={classes.menubar} position="static" elevation={0} color="transparent">
+        <Toolbar className={classes.toolbar}>
+        <IconButton className={classes.close}
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              onClick={handleOnClose}
             >
-              Sign Up
+              <CancelIcon />
+            </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+        </Typography>
+          <br />
+          {error && <Alert severity="error">{error}</Alert>}
+          <ThemeProvider theme={theme}>
+            <form onSubmit={handleSubmit} className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    name="firstName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="firstName"
+                    inputRef={firstRef}
+                    label="First Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="lastName"
+                    inputRef={lastRef}
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="lname"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    inputRef={emailRef}
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    inputRef={passwordRef}
+                    autoComplete="current-password"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Confirm Password"
+                    type="password"
+                    id="password-confirm"
+                    inputRef={passwordConfirmRef}
+                    autoComplete="current-password"
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                disabled={loading}
+                type="submit"
+                fullWidth
+                variant="contained"
+                className={classes.submit}
+              >
+                Sign Up
             </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <RDLink to='/login' style={{textDecoration: 'none'}}>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <RDLink to='/login' style={{ textDecoration: 'none' }}>
+                    <Link href="#" variant="body2">
+                      Already have an account? Sign in
                 </Link>
-              </RDLink>
-            </Grid>
-          </Grid>
-        </form>
-        </ThemeProvider>
-      </div>
-    </Container>
+                  </RDLink>
+                </Grid>
+              </Grid>
+            </form>
+          </ThemeProvider>
+        </div>
+      </Container>
+    </div>
   );
 }

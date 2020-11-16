@@ -16,6 +16,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 import { Link as RDLink, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { AppBar, Toolbar } from '@material-ui/core';
+import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@material-ui/core/IconButton';
 
 const theme = createMuiTheme({
   palette: {
@@ -57,6 +60,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#FB8C00'
     },
   },
+  toolbar: {
+    background: 'none'
+  },
+  close: {
+    color: '#F57C00',
+    marginLeft: 'auto',
+  }
 }));
 
 export default function SignIn() {
@@ -83,9 +93,27 @@ export default function SignIn() {
     setLoading(false);
   }
 
+  function handleOnClose() {
+    history.push("/");
+  }
+
   const classes = useStyles();
 
   return (
+    <div>
+    <AppBar className={classes.menubar} position="static" elevation={0} color="transparent">
+        <Toolbar className={classes.toolbar}>
+        <IconButton className={classes.close}
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              onClick={handleOnClose}
+            >
+              <CancelIcon />
+            </IconButton>
+        </Toolbar>
+      </AppBar>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -150,5 +178,6 @@ export default function SignIn() {
       </div>
 
     </Container>
+    </div>
   );
 }
