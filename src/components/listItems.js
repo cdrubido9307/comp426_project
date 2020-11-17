@@ -12,38 +12,44 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
 
 export const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Shipments" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <Link to='/create-shipement' style={{ textDecoration: 'none' }}>
-      <ListItemText primary="Create Shipment" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Track Shipments" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Contact Us" />
-    </ListItem>
-  </div>
+    <div>
+        <ListItem button>
+            <ListItemIcon>
+                <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+        </ListItem>
+
+        <ListItem button>
+            <ListItemIcon>
+                <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Shipments" />
+        </ListItem>
+
+        <ListItem button>
+            <ListItemIcon>
+                <Link to='/create-shipement' style={{ color: '#707070', textDecoration: 'none' }}>
+                    <PeopleIcon />
+                </Link>
+            </ListItemIcon>
+            <Link to='/create-shipement' style={{ color: '#212121', textDecoration: 'none' }}>
+                <ListItemText primary="Create Shipment" />
+            </Link>
+        </ListItem>
+
+        <ListItem button>
+            <ListItemIcon>
+                <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Track Shipments" />
+        </ListItem>
+
+        <ListItem button>
+            <ListItemIcon>
+                <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contact Us" />
+        </ListItem>
+    </div>
 );

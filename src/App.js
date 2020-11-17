@@ -6,6 +6,7 @@ import UserDashboard from './views/UserDashboard';
 import ForgotPassword from "./views/ForgotPassword";
 import CreateShipment from "./views/CreateShipment";
 import { AuthProvider } from './contexts/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
 import {
   BrowserRouter as Router,
@@ -19,7 +20,7 @@ export default function App() {
       <Router>
         <Switch>
             <Route exact path="/" component={LandingPage}/>
-            <Route path="/user-dashboard" component={UserDashboard}/>
+            <PrivateRoute path="/user-dashboard" component={UserDashboard}/>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/forgot-password" component={ForgotPassword} />
