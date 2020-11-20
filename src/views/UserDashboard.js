@@ -17,7 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems } from '../components/listItems';
+import { mainListItems } from '../components/ListItems';
 import Chart from '../components/Chart';
 import Expenses from '../components/Expenses';
 import Shippings from '../components/Shippings';

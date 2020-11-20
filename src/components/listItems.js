@@ -2,14 +2,13 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import ExploreSharpIcon from '@material-ui/icons/ExploreSharp';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+
 import { Link } from 'react-router-dom';
+
 
 export const mainListItems = (
     <div>
@@ -22,15 +21,8 @@ export const mainListItems = (
 
         <ListItem button>
             <ListItemIcon>
-                <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Shipments" />
-        </ListItem>
-
-        <ListItem button>
-            <ListItemIcon>
                 <Link to='/create-shipement' style={{ color: '#707070', textDecoration: 'none' }}>
-                    <PeopleIcon />
+                    <LocalShippingIcon />
                 </Link>
             </ListItemIcon>
             <Link to='/create-shipement' style={{ color: '#212121', textDecoration: 'none' }}>
@@ -40,14 +32,14 @@ export const mainListItems = (
 
         <ListItem button>
             <ListItemIcon>
-                <BarChartIcon />
+                <ExploreSharpIcon />
             </ListItemIcon>
             <ListItemText primary="Track Shipments" />
         </ListItem>
 
         <ListItem button>
             <ListItemIcon>
-                <LayersIcon />
+                <ContactSupportIcon />
             </ListItemIcon>
             <ListItemText primary="Contact Us" />
         </ListItem>

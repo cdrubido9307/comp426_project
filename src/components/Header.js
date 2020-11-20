@@ -67,8 +67,6 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '100vh',
@@ -77,17 +75,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPositionY: '50%',
         backgroundPositionX: '20%',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         height: '95vh',
         fontFamily: 'Nunito'
     },
     menubar: {
-        background: 'none'
+        background: 'none',
+        position: 'static'
     },
     icon: {
-        color: '#fff',
+        color: '#FFF',
         fontSize: '2rem'
     },
     menubartitle: {
@@ -108,13 +106,17 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.6rem'
     },
     fcolor: {
-        color: '#FFF'
+        color: '#FFF',
+        fontWeight: '900'
     },
     scolor: {
-        color: '#FF9800'
+        color: '#FF9800',
+        fontWeight: '900'
     },
     mainmessage: {
-        fontSize: '2.8rem'
+        fontSize: '2.8rem',
+        marginTop: '11rem',
+        fontWeight: '900'
     },
     expand: {
         color: '#FFF',
@@ -179,12 +181,7 @@ export default function Header() {
                                 </Button>
                         </RDLink>
                     </Hidden>
-
-                    {/* <IconButton>
-                        <MenuIcon className={classes.icon} />
-                    </IconButton> */}
                     <ThemeProvider theme={theme}>
-
                         <div>
                             <IconButton
                                 aria-controls="customized-menu"
@@ -195,7 +192,6 @@ export default function Header() {
                             >
                                 <MenuIcon className={classes.icon} />
                             </IconButton>
-
                             <StyledMenu
                                 id="customized-menu"
                                 anchorEl={anchorEl}
@@ -242,7 +238,6 @@ export default function Header() {
                             </StyledMenu>
                         </div>
                     </ThemeProvider>
-
                 </Toolbar>
             </AppBar>
             <Collapse in={checked} {...(checked ? { timeout: 1500 } : {})} collapsedHeight={50}>

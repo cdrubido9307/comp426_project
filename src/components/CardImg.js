@@ -4,50 +4,87 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Collapse } from '@material-ui/core';
+import { Avatar, Collapse } from '@material-ui/core';
 import useWindowPosition from '../hook/useWindowPosition';
+import { blue, pink, green } from '@material-ui/core/colors';
+
+const myCard = Card;
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 645,
-    background: 'rgba(0,0,0,0.5)',
-    margin: '20px'
+    maxWidth: 345,
+    margin: '20px',
   },
   media: {
-    height: 440
+    height: 3
   },
   title: {
     fontFamily: 'Nunito',
     //fontWeight: 'bold',
     fontSize: '2rem',
-    color: '#FFF'
   },
   description: {
     fontFamily: 'Nunito',
-    fontWeight: 'lighter',
     fontSize: '1rem',
-    color: '#DDD'
+  },
+  cardavatar1: {
+    height: '8rem',
+    width: '8rem',
+    backgroundColor: blue[400]
+  }, 
+  cardavatar2: {
+    height: '8rem',
+    width: '8rem',
+    backgroundColor: pink[400]
+  }, 
+  cardavatar3: {
+    height: '8rem',
+    width: '8rem',
+    backgroundColor: green[400]
+  }, 
+
+  divavatar: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  iconsize: {
+    height: '3.5rem',
+    width: '4rem',
+    color: '#FFF'
   }
 });
 
 export default function CardImg({ card, checked }) {
   const classes = useStyles();
+  let color_class;
+  
+  if(card.color === "blue") {
+    color_class = classes.cardavatar1;
+  }
+  else if (card.color === "pink") {
+    color_class = classes.cardavatar2;
+  }
+  else {
+    color_class = classes.cardavatar3;
+  }
   return (
-    <Collapse in={checked} {...(checked ? { timeout: 1500 }: {})}>
+    <Collapse in={checked} {...(checked ? { timeout: 1500 } : {})}>
       <Card className={classes.root}>
-          <CardMedia
-            className={classes.media}
-            image={card.image}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-              {card.title}
-            </Typography>
-            <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-              {card.description}
-            </Typography>
-          </CardContent>
+
+        <CardContent>
+          <div className={classes.divavatar}>
+          <Avatar className={color_class}>
+            <card.icon fontSize="large" className={classes.iconsize}/>
+          </Avatar>
+          </div>
+          <br/>
+          <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+            {card.title}
+          </Typography>
+          <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+            {card.description}
+          </Typography>
+        </CardContent>
       </Card>
     </Collapse>
   );
