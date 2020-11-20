@@ -1,55 +1,199 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+import React, { useEffect, useState } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Hidden
+} from '@material-ui/core';
+import Background from '../assets/pricingimg.jpg';
+import { Link as RDLink } from 'react-router-dom';
+import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Footer from './Footer';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import StarIcon from '@material-ui/icons/StarBorder';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: orange[800],
+        },
+        secondary: {
+            main: orange[600],
+        },
+    },
+});
 
-const useStyles = makeStyles((theme) => ({
-  '@global': {
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: 'none',
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.black,
+      },
     },
   },
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+}))(MenuItem);
+
+const tiers = [
+  {
+    title: 'Basic',
+    price: '4',
+    description: [
+      'Single user experience',
+      'Up to 3 shipments at once',
+      'No access to Google API'],
+    buttonText: 'Sign up for free',
+    buttonVariant: 'outlined',
   },
-  toolbar: {
-    flexWrap: 'wrap',
+  {
+    title: 'Pro',
+    subheader: 'Most popular',
+    price: '10',
+    description: [
+      'Multiple users experience',
+      'Up to 10 shipments at once',
+      'Google API access',
+    ],
+    buttonText: 'Get started',
+    buttonVariant: 'contained',
   },
-  toolbarTitle: {
-    flexGrow: 1,
+  {
+    title: 'Enterprise',
+    price: '20',
+    description: [
+      'Corporate experience',
+      'Ideal for large shipments',
+      'All the bells and whistles',
+    ],
+    buttonText: 'Contact us',
+    buttonVariant: 'outlined',
+  },
+];
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh',
+    backgroundImage: `url(${Background})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPositionY: '31.5%',
+    backgroundPositionX: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '95vh',
+    fontFamily: 'Nunito'
+  },
+  menubar: {
+    background: 'none',
+    position: 'static'
+  },
+  icon: {
+    color: '#FFF',
+    fontSize: '2rem'
+  },
+  menubartitle: {
+    flexGrow: '1',
+    display: "flex",
+    fontSize: '2.5rem'
+  },
+  menutoolbar: {
+    width: '80%',
+    margin: '0 auto'
+  },
+  toolbarlinks: {
+    padding: theme.spacing(1.5),
+    '&:hover': {
+      color: '#F57C00'
+    },
+    color: '#FFF',
+    fontSize: '1.6rem'
+  },
+  fcolor: {
+    color: '#FFF',
+    fontWeight: '900'
+  },
+  scolor: {
+    color: '#FF9800',
+    fontWeight: '900'
+  },
+  expand: {
+    color: '#FFF',
+    fontSize: '3.5rem',
+  },
+  resposive: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    }
+  },
+  btn: {
+    margin: theme.spacing(0.5),
+    '&:hover': {
+      backgroundColor: '#F57C00'
+    },
+    color: '#FFF',
+    backgroundColor: '#FF9800'
+  },
+  iconbtn: {
+    '&:hover': {
+      backgroundColor: '#FF9800'
+    },
+    color: '#111214',
   },
   link: {
     margin: theme.spacing(1, 1.5),
   },
   heroContent: {
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(5, 0, 6),
+  },
+  mainmess: {
+    fontFamily: 'Nunito',
+    fontSize: '3.5rem',
+    fontWeight: '900',
+    color: '#FFF',
   },
   cardHeader: {
     backgroundColor:
@@ -61,113 +205,126 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     marginBottom: theme.spacing(2),
   },
-  footer: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
+  '@global': {
+    ul: {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
     },
   },
 }));
 
-const tiers = [
-  {
-    title: 'Free',
-    price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-  },
-];
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-  },
-];
-
-export default function Pricing() {
+export default function Header() {
   const classes = useStyles();
 
+  const [checked, setChecked] = useState(false);
+  useEffect(() => {
+    setChecked(true);
+  }, []);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            Company name
-          </Typography>
-          <nav>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Features
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Enterprise
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Support
-            </Link>
-          </nav>
-          <Button href="#" color="primary" variant="outlined" className={classes.link}>
-            Login
-          </Button>
+    <div className={classes.root} id="header">
+
+      <AppBar className={classes.menubar} elevation={0}>
+        <Toolbar className={classes.menutoolbar}>
+          <h1 className={classes.menubartitle}><span className={classes.fcolor}>d</span><span className={classes.scolor}>Tracker.</span></h1>
+          <Hidden mdDown>
+            <RDLink to='/login' style={{ textDecoration: 'none' }}>
+              <Button variant="contained" size="medium" className={classes.btn}>
+                Login
+              </Button>
+            </RDLink>
+            <RDLink to='/signup' style={{ textDecoration: 'none' }}>
+              <Button variant="contained" size="medium" className={classes.btn}>
+                Sign Up
+              </Button>
+            </RDLink>
+          </Hidden>
+          <ThemeProvider theme={theme}>
+            <div>
+              <IconButton
+                aria-controls="customized-menu"
+                aria-haspopup="true"
+                variant="contained"
+                color="primary"
+                onClick={handleClick}
+              >
+                <MenuIcon className={classes.icon} />
+              </IconButton>
+              <StyledMenu
+                id="customized-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <RDLink to='/' style={{ textDecoration: 'none' }}>
+                  <StyledMenuItem className={classes.iconbtn}>
+                    <ListItemIcon>
+                      <HomeIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Home" />
+                  </StyledMenuItem>
+                </RDLink>
+                <RDLink to='/about' style={{ textDecoration: 'none' }}>
+                  <StyledMenuItem className={classes.iconbtn}>
+                    <ListItemIcon>
+                      <InfoIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="About" />
+                  </StyledMenuItem>
+                </RDLink>
+                <RDLink to='/contact' style={{ textDecoration: 'none' }}>
+                  <StyledMenuItem className={classes.iconbtn}>
+                    <ListItemIcon>
+                      <DraftsIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Contact" />
+                  </StyledMenuItem>
+                </RDLink>
+                <Hidden lgUp>
+                  <RDLink to='/login' style={{ textDecoration: 'none' }}>
+                    <StyledMenuItem className={classes.iconbtn}>
+                      <ListItemIcon>
+                        <LockOpenIcon fontSize="small" />
+                      </ListItemIcon>
+                      <ListItemText primary="Login" />
+                    </StyledMenuItem>
+                  </RDLink>
+                  <RDLink to='/signup' style={{ textDecoration: 'none' }}>
+                    <StyledMenuItem className={classes.iconbtn}>
+                      <ListItemIcon>
+                        <AccountCircleIcon fontSize="small" />
+                      </ListItemIcon>
+                      <ListItemText primary="Sign Up" />
+                    </StyledMenuItem>
+                  </RDLink>
+                </Hidden>
+              </StyledMenu>
+            </div>
+          </ThemeProvider>
         </Toolbar>
       </AppBar>
-      {/* Hero unit */}
+      <ThemeProvider theme={theme}>
+
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        <Typography className={classes.mainmess} component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
           Pricing
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" component="p">
-          Quickly build an effective pricing table for your potential customers with this layout.
-          It&apos;s built with default Material-UI components with little customization.
-        </Typography>
       </Container>
-      {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
@@ -205,31 +362,20 @@ export default function Pricing() {
           ))}
         </Grid>
       </Container>
-      {/* Footer */}
-      <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
-      {/* End footer */}
-    </React.Fragment>
+      </ThemeProvider>
+      <br />
+      <br />
+      <Footer />
+    </div>
   );
 }
+
+
+
+
+
+
+
+
+
+

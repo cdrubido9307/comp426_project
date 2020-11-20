@@ -9,7 +9,7 @@ import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 
 import { Link } from 'react-router-dom';
 
-
+// menu items
 export const mainListItems = (
     <div>
         <ListItem button>
