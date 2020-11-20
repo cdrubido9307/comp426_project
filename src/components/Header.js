@@ -211,12 +211,14 @@ export default function Header() {
                                     </ListItemIcon>
                                     <ListItemText primary="Contact" />
                                 </StyledMenuItem>
+                                <RDLink to='/pricing' style={{ textDecoration: 'none' }}>
                                 <StyledMenuItem className={classes.iconbtn}>
                                     <ListItemIcon>
                                         <MonetizationOnIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText primary="Pricing" />
                                 </StyledMenuItem>
+                                </RDLink>
                                 <Hidden lgUp>
                                     <RDLink to='/login' style={{ textDecoration: 'none' }}>
                                         <StyledMenuItem className={classes.iconbtn}>

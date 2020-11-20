@@ -8,7 +8,7 @@ import { Link as RDLink } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     footer: {
         fontFamily: 'Nunito',
-        backgroundColor: '#464749',
+        backgroundColor: '#313234',
         paddingBottom: theme.spacing(3),
     },
     footerbar: {
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     linkage: {
         padding: theme.spacing(0, 3),
         fontSize: '1.3rem',
-        color: '#FF9800'
+        color: '#FFF',
+        fontWeight: '600'
     },
     copyr: {
         color: '#FFF'
@@ -33,7 +34,7 @@ export default function Footer() {
                 <Toolbar className={classes.footerbar}>
                     <RDLink to='/about' style={{ textDecoration: 'none' }} className={classes.linkage}>About</RDLink>
                     <RDLink to='/contact' style={{ textDecoration: 'none' }} className={classes.linkage}>Contact</RDLink>
-                    <RDLink to='/contact' style={{ textDecoration: 'none' }} className={classes.linkage}>Pricing</RDLink>
+                    <RDLink to='/pricing' style={{ textDecoration: 'none' }} className={classes.linkage}>Pricing</RDLink>
                 </Toolbar>
                 <Typography className={classes.copyr} variant="subtitle1" align="center">
                     {'Copyright ©️ dTracker '}

@@ -7,6 +7,7 @@ import ForgotPassword from "./views/ForgotPassword";
 import CreateShipment from "./views/CreateShipment";
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import Pricing from './components/Pricing';
 
 import {
   BrowserRouter as Router,
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/signup" component={Signup}/>
             <Route path="/forgot-password" component={ForgotPassword} />
             <Route path="/create-shipement" component={CreateShipment} />
+            <Route path="/pricing" component={Pricing} />
         </Switch>
       </Router>
     </div>

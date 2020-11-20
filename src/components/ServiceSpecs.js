@@ -57,6 +57,7 @@ export default function ServiceSpecs() {
                 <CardImg card={cards[2]} checked={checked} />
                 <div className="icon icon-info icon-round icon-lg"></div>
             </div>
+            
         </div>
     )
 }
