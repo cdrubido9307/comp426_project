@@ -199,25 +199,30 @@ export default function Header() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <StyledMenuItem className={classes.iconbtn}>
-                                    <ListItemIcon>
-                                        <InfoIcon fontSize="small" />
-                                    </ListItemIcon>
-                                    <ListItemText primary="About" />
-                                </StyledMenuItem>
-                                <StyledMenuItem className={classes.iconbtn}>
-                                    <ListItemIcon>
-                                        <DraftsIcon fontSize="small" />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Contact" />
-                                </StyledMenuItem>
+                                <RDLink to='/about' style={{ textDecoration: 'none' }}>
+                                    <StyledMenuItem className={classes.iconbtn}>
+                                        <ListItemIcon>
+                                            <InfoIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="About" />
+                                    </StyledMenuItem>
+                                </RDLink>
+                                <RDLink to='/contact' style={{ textDecoration: 'none' }}>
+                                    <StyledMenuItem className={classes.iconbtn}>
+                                        <ListItemIcon>
+                                            <DraftsIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Contact" />
+                                    </StyledMenuItem>
+                                </RDLink>
+
                                 <RDLink to='/pricing' style={{ textDecoration: 'none' }}>
-                                <StyledMenuItem className={classes.iconbtn}>
-                                    <ListItemIcon>
-                                        <MonetizationOnIcon fontSize="small" />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Pricing" />
-                                </StyledMenuItem>
+                                    <StyledMenuItem className={classes.iconbtn}>
+                                        <ListItemIcon>
+                                            <MonetizationOnIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Pricing" />
+                                    </StyledMenuItem>
                                 </RDLink>
                                 <Hidden lgUp>
                                     <RDLink to='/login' style={{ textDecoration: 'none' }}>
