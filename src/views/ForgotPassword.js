@@ -3,10 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
+    lockout: {
+        // No properties
+    },
+    input: {
+        //
+    },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: '#f57c00',
@@ -66,33 +68,31 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
 
     const emailRef = useRef();
-    const passwordRef = useRef();
-    const { login } = useAuth();
+    const { resetPassword } = useAuth();
     const [error, setError] = useState('');
+    const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
     async function handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         try {
-            setError("");
-            setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
-            history.push("/user-dashboard")
+            setMessage("")
+            setError("")
+            setLoading(true)
+            await resetPassword(emailRef.current.value)
+            setMessage("Check your inbox for further instructions")
+            history.push("/login");
         } catch {
-            setError("Failed to login. Please verify your credentials!");
+            setError("Failed to reset password")
         }
 
-        setLoading(false);
+        setLoading(false)
     }
 
     function handleOnClose() {
-        history.push("/");
-    }
-
-    function handleForgotPassword() {
-        history.push("/forgot-password");
+        history.push("/login");
     }
 
     const classes = useStyles();
@@ -119,12 +119,13 @@ export default function SignIn() {
                         <LockOutlinedIcon className={classes.lockout} />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Login
-                    </Typography>
+                        Forgot Password
+        </Typography>
                     <br />
                     {error && <Alert severity="error">{error}</Alert>}
                     <ThemeProvider theme={theme}>
-                        <form onSubmit={handleSubmit} className={classes.form} noValidate>
+                        <form onSubmit={handleSubmit}
+                            className={classes.form} noValidate>
                             <TextField className={classes.input}
                                 variant="outlined"
                                 margin="normal"
@@ -137,43 +138,18 @@ export default function SignIn() {
                                 autoComplete="email"
                                 autoFocus
                             />
-                            <TextField className={classes.input} theme={theme}
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                inputRef={passwordRef}
-                                autoComplete="current-password"
-                            />
                             <Button disabled={loading}
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 className={classes.submit}
                             >
-                                Login
-                            </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2" onClick={handleForgotPassword}>
-                                        Forgot password?
-                                </Link>
-                                </Grid>
-                                <Grid item>
-                                    <RDLink to='/signup' style={{ textDecoration: 'none' }}>
-                                        <Link href="#" variant="body2">
-                                            {"Don't have an account? Sign Up"}
-                                        </Link>
-                                    </RDLink>
-                                </Grid>
-                            </Grid>
+                                Reset
+            </Button>
                         </form>
                     </ThemeProvider>
                 </div>
+
             </Container>
         </div>
     );

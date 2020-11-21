@@ -67,8 +67,6 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '100vh',
@@ -77,17 +75,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPositionY: '50%',
         backgroundPositionX: '20%',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         height: '95vh',
         fontFamily: 'Nunito'
     },
     menubar: {
-        background: 'none'
+        background: 'none',
+        position: 'static'
     },
     icon: {
-        color: '#fff',
+        color: '#FFF',
         fontSize: '2rem'
     },
     menubartitle: {
@@ -108,13 +106,17 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.6rem'
     },
     fcolor: {
-        color: '#FFF'
+        color: '#FFF',
+        fontWeight: '900'
     },
     scolor: {
-        color: '#FF9800'
+        color: '#FF9800',
+        fontWeight: '900'
     },
     mainmessage: {
-        fontSize: '2.8rem'
+        fontSize: '2.8rem',
+        marginTop: '11rem',
+        fontWeight: '900'
     },
     expand: {
         color: '#FFF',
@@ -166,11 +168,7 @@ export default function Header() {
         <div className={classes.root} id="header">
             <AppBar className={classes.menubar} elevation={0}>
                 <Toolbar className={classes.menutoolbar}>
-                    <h1 className={classes.menubartitle}>
-                        <RDLink to='/' style={{ textDecoration: 'none' }}>
-                        <span className={classes.fcolor}>d</span><span className={classes.scolor}>Tracker.</span>
-                        </RDLink>
-                    </h1>
+                    <h1 className={classes.menubartitle}><span className={classes.fcolor}>d</span><span className={classes.scolor}>Tracker.</span></h1>
                     <Hidden mdDown>
                         <RDLink to='/login' style={{ textDecoration: 'none' }}>
                             <Button variant="contained" size="medium" className={classes.btn}>
@@ -201,26 +199,26 @@ export default function Header() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <RDLink to='/about' style={{ textDecoration: 'none' }}>
-                                    <StyledMenuItem className={classes.iconbtn}>
-                                        <ListItemIcon>
-                                            <InfoIcon fontSize="small" />
-                                        </ListItemIcon>
-                                        <ListItemText primary="About" />
-                                    </StyledMenuItem>
-                                </RDLink>
+                                <StyledMenuItem className={classes.iconbtn}>
+                                    <ListItemIcon>
+                                        <InfoIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText primary="About" />
+                                </StyledMenuItem>
                                 <StyledMenuItem className={classes.iconbtn}>
                                     <ListItemIcon>
                                         <DraftsIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText primary="Contact" />
                                 </StyledMenuItem>
+                                <RDLink to='/pricing' style={{ textDecoration: 'none' }}>
                                 <StyledMenuItem className={classes.iconbtn}>
                                     <ListItemIcon>
                                         <MonetizationOnIcon fontSize="small" />
                                     </ListItemIcon>
                                     <ListItemText primary="Pricing" />
                                 </StyledMenuItem>
+                                </RDLink>
                                 <Hidden lgUp>
                                     <RDLink to='/login' style={{ textDecoration: 'none' }}>
                                         <StyledMenuItem className={classes.iconbtn}>
@@ -260,3 +258,4 @@ export default function Header() {
         </div>
     );
 }
+

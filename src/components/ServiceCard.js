@@ -18,12 +18,12 @@ const useStyles = makeStyles({
   cardtitle: {
     fontFamily: 'Nunito',
     fontWeight: 'bold',
-    fontSize: '2rem', 
+    fontSize: '2rem',
     color: '#FFF',
   },
   carddescription: {
     fontFamily: 'Nunito',
-    fontSize: '1.1rem', 
+    fontSize: '1.1rem',
     color: '#DDD',
   },
 });

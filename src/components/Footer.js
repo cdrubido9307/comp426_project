@@ -1,46 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            {new Date().getFullYear()}
-            {' All Rights Reserved.'}
-        </Typography>
-    );
-}
+import Toolbar from '@material-ui/core/Toolbar';
+import { Link as RDLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6, 0),
+        fontFamily: 'Nunito',
+        backgroundColor: '#313234',
+        paddingBottom: theme.spacing(3),
     },
+    footerbar: {
+        justifyContent: 'center',
+    },
+    linkage: {
+        padding: theme.spacing(0, 3),
+        fontSize: '1.3rem',
+        color: '#FFF',
+        fontWeight: '600'
+    },
+    copyr: {
+        color: '#FFF'
+    }
 }));
 
-export default function Footer(props) {
+export default function Footer() {
     const classes = useStyles();
-    const { description, title } = props;
 
     return (
         <footer className={classes.footer}>
             <Container maxWidth="lg">
-                <Typography variant="h6" align="center" gutterBottom>
-                    {title}
+                <Toolbar className={classes.footerbar}>
+                    <RDLink to='/' style={{ textDecoration: 'none' }} className={classes.linkage}>Home</RDLink>
+                    <RDLink to='/about' style={{ textDecoration: 'none' }} className={classes.linkage}>About</RDLink>
+                    <RDLink to='/contact' style={{ textDecoration: 'none' }} className={classes.linkage}>Contact</RDLink>
+                    <RDLink to='/pricing' style={{ textDecoration: 'none' }} className={classes.linkage}>Pricing</RDLink>
+                </Toolbar>
+                <Typography className={classes.copyr} variant="subtitle1" align="center">
+                    {'Copyright ©️ dTracker '}
+                    {new Date().getFullYear()}
+                    {' All Rights Reserved.'}
                 </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    {description}
-                </Typography>
-                <Copyright />
             </Container>
         </footer>
     );
 }
-
-Footer.propTypes = {
-    description: PropTypes.string,
-    title: PropTypes.string,
-};
