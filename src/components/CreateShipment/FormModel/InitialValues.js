@@ -26,7 +26,8 @@ const {
         recipientCountry,
         status,
         deliveryNumber,
-        date
+        date,
+        clientID
     }
 } = ReviewShipmentModel;
 

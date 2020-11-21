@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -47,13 +47,13 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {props.shipment.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell>{row.senderFirst}</TableCell>
+              <TableCell>{row.recipientAddress}</TableCell>
+              <TableCell>{row.senderAddress}</TableCell>
+              <TableCell align="right">{row.recipientFirst}</TableCell>
             </TableRow>
           ))}
         </TableBody>

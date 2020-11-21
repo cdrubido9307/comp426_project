@@ -160,6 +160,7 @@ export default function CreateShipment() {
     const shipmentNum = encryptedRandom(ranNums);
     values.deliveryNumber = shipmentNum;
     values.status = false;
+    values.clientId = currentUser.uid;
     const currentDate = new Date();
     const date = currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     values.date = date;

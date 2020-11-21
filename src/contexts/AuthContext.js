@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     function signup(first, last, email, password) {
-        return auth.createUserWithEmailAndPassword(email, password).then(function(data) {
+        return auth.createUserWithEmailAndPassword(email, password).then(function (data) {
             db.collection('client').doc(data.user.uid).set({
                 firstName: first,
                 lastName: last
@@ -27,15 +27,15 @@ export function AuthProvider({ children }) {
 
     function logout() {
         return auth.signOut()
-      }
-    
-      function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email)
-      }
+    }
 
-      function addShipment(shipmentObj) {
-          return db.collection('shipment').doc(currentUser.uid).set(shipmentObj);
-      }
+    function resetPassword(email) {
+        return auth.sendPasswordResetEmail(email)
+    }
+
+    function addShipment(shipmentObj) {
+        return db.collection('shipments').doc(shipmentObj.deliveryNumber).set(shipmentObj);
+    }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
         login,
         logout,
         resetPassword,
-        addShipment
+        addShipment,
     };
 
     return (

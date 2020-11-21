@@ -119,6 +119,9 @@ export default function Dashboard() {
   const [user, setUser] = useState("");
   const history = useHistory();
   const [open, setOpen] = useState(true);
+  const [shipment, setShipments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const shipmentRef = db.collection('shipments').where('clientId', '==', currentUser.uid);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -136,6 +139,24 @@ export default function Dashboard() {
       setError("Failed to log out");
     }
   }
+
+  function getShipments() {
+    setLoading(true);
+    shipmentRef.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setShipments(items);
+      setLoading(false);
+    })
+  }
+
+  useEffect(() => {
+    getShipments();
+  }, [])
+
+  console.log(shipment);
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const clientRef = db.collection('client');
@@ -255,7 +276,7 @@ export default function Dashboard() {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Shippings />
+                <Shippings shipment={shipment}/>
               </Paper>
             </Grid>
           </Grid>
