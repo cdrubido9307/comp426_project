@@ -3,34 +3,35 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import LandingPage from './views/LandingPage';
 import UserDashboard from './views/UserDashboard';
-import ForgotPassword from "./views/ForgotPassword";
-import CreateShipment from "./views/CreateShipment";
+import ForgotPassword from './views/ForgotPassword';
+import CreateShipment from './components/CreateShipment/CreateShipment';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
-import Pricing from './components/Pricing';
+import Pricing from './views/Pricing';
 
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch } from 'react-router-dom';
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from 'react-router-dom';
 
 export default function App() {
-  return (
-    <AuthProvider>
-    <div className="App">
-      <Router>
-        <Switch>
-            <Route exact path="/" component={LandingPage}/>
-            <PrivateRoute path="/user-dashboard" component={UserDashboard}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/create-shipement" component={CreateShipment} />
-            <Route path="/pricing" component={Pricing} />
-        </Switch>
-      </Router>
-    </div>
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <div className="App">
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={LandingPage} />
+                        <PrivateRoute path="/user-dashboard" component={UserDashboard} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/forgot-password" component={ForgotPassword} />
+                        <Route path="/create-shipment" component={CreateShipment} />
+                        <Route path="/pricing" component={Pricing} />
+                    </Switch>
+                </Router>
+            </div>
+        </AuthProvider>
+    );
 }
 

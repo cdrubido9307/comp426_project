@@ -25,7 +25,7 @@ export const mainListItems = (
                     <LocalShippingIcon />
                 </Link>
             </ListItemIcon>
-            <Link to='/create-shipement' style={{ color: '#212121', textDecoration: 'none' }}>
+            <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
                 <ListItemText primary="Create Shipment" />
             </Link>
         </ListItem>

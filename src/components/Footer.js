@@ -32,6 +32,7 @@ export default function Footer() {
         <footer className={classes.footer}>
             <Container maxWidth="lg">
                 <Toolbar className={classes.footerbar}>
+                    <RDLink to='/' style={{ textDecoration: 'none' }} className={classes.linkage}>Home</RDLink>
                     <RDLink to='/about' style={{ textDecoration: 'none' }} className={classes.linkage}>About</RDLink>
                     <RDLink to='/contact' style={{ textDecoration: 'none' }} className={classes.linkage}>Contact</RDLink>
                     <RDLink to='/pricing' style={{ textDecoration: 'none' }} className={classes.linkage}>Pricing</RDLink>

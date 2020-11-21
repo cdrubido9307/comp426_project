@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+export default function ReviewShipment() {
   const classes = useStyles();
 
   return (

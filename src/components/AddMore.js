@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function AddMore() {
-
     const classes = useStyles();
     const [visible, setVisible] = useState(false);
     const [but, setBut] = useState(true);
@@ -26,7 +25,6 @@ export default function AddMore() {
     }
 
     return (
-        
         <Grid item xs={12}>
             {but && <Grid>
             <Fab className={classes.info} size="small" color="primary" aria-label="add">
@@ -40,10 +38,5 @@ export default function AddMore() {
             {visible && <ShippingItem/>} 
             </Grid>
         </Grid>
-        
-        
     );
 }
-
-
-
