@@ -34,6 +34,8 @@ import ValidationSchema from './FormModel/ValidationSchema';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -112,6 +114,7 @@ export default function CreateShipment() {
   const history = useHistory();
   const validationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
+  const { addShipment, currentUser } = useAuth();
 
 
   // Random generator begins=================================================
@@ -154,15 +157,15 @@ export default function CreateShipment() {
 
   const handleSubmitForm = async function(values, actions) {
     await makeMeAPromise(1000);
-
     const shipmentNum = encryptedRandom(ranNums);
     values.deliveryNumber = shipmentNum;
     values.status = false;
-    console.log(values);
-    alert(JSON.stringify(values, null, 2));
+    const currentDate = new Date();
+    const date = currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
+    values.date = date;
     actions.setSubmitting(false);
-
     setActiveStep(activeStep + 1);
+    await addShipment(values);
     return values;
   }
 
