@@ -161,14 +161,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFF',
     fontSize: '3.5rem',
   },
-  resposive: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-    }
-  },
   btn: {
     margin: theme.spacing(0.5),
     '&:hover': {
@@ -212,6 +204,11 @@ const useStyles = makeStyles((theme) => ({
       listStyle: 'none',
     },
   },
+  footdiv: {
+    position: 'absolute',
+    bottom: '0px',
+    minWidth: '100%'
+  }
 }));
 
 export default function Header() {
@@ -365,8 +362,12 @@ export default function Header() {
       </ThemeProvider>
       <br />
       <br />
-      <Footer />
+      <div className={classes.footdiv}>
+        <Footer />
+      </div>
+      
     </div>
+    
   );
 }
 
