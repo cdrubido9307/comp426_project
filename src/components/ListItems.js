@@ -19,16 +19,14 @@ export const mainListItems = (
             <ListItemText primary="Dashboard" />
         </ListItem>
 
-        <ListItem button>
-            <ListItemIcon>
-                <Link to='/create-shipement' style={{ color: '#707070', textDecoration: 'none' }}>
+        <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
                     <LocalShippingIcon />
-                </Link>
-            </ListItemIcon>
-            <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+                </ListItemIcon>
                 <ListItemText primary="Create Shipment" />
-            </Link>
-        </ListItem>
+            </ListItem>
+        </Link>
 
         <ListItem button>
             <ListItemIcon>
@@ -37,11 +35,14 @@ export const mainListItems = (
             <ListItemText primary="Track Shipments" />
         </ListItem>
 
-        <ListItem button>
-            <ListItemIcon>
-                <ContactSupportIcon />
-            </ListItemIcon>
-            <ListItemText primary="Contact Us" />
-        </ListItem>
+        <Link to='/contact' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <ContactSupportIcon />
+                </ListItemIcon>
+                <ListItemText primary="Contact Us" />
+            </ListItem>
+        </Link>
+
     </div>
 );

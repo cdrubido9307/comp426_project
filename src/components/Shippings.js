@@ -43,7 +43,7 @@ export default function Orders(props) {
             <TableCell>Name</TableCell>
             <TableCell>Ship To</TableCell>
             <TableCell>Ship from</TableCell>
-            <TableCell align="right">Received By</TableCell>
+            <TableCell align="right">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
