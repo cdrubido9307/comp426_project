@@ -154,9 +154,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     getShipments();
-  }, [])
-
-  console.log(shipment);
+  }, []);
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const clientRef = db.collection('client');
@@ -270,7 +268,7 @@ export default function Dashboard() {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Expenses />
+                <Expenses shipment={shipment}/>
               </Paper>
             </Grid>
             {/* Recent Orders */}

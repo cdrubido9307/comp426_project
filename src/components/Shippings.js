@@ -6,6 +6,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TimelapseIcon from '@material-ui/icons/Timelapse';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Title from './Title';
 
 // Generate Order Data
@@ -40,6 +42,7 @@ export default function Orders(props) {
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
+            <TableCell>Delivery Number</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Ship To</TableCell>
             <TableCell>Ship from</TableCell>
@@ -50,10 +53,11 @@ export default function Orders(props) {
           {props.shipment.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
+              <TableCell>{row.deliveryNumber}</TableCell>
               <TableCell>{row.senderFirst}</TableCell>
               <TableCell>{row.recipientAddress}</TableCell>
               <TableCell>{row.senderAddress}</TableCell>
-              <TableCell align="right">{row.recipientFirst}</TableCell>
+              <TableCell align="right">{row.status ? <CheckCircleIcon/>: <TimelapseIcon/>}</TableCell>
             </TableRow>
           ))}
         </TableBody>
