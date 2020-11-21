@@ -9,7 +9,6 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
 
@@ -34,6 +33,10 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
       }
 
+      function addShipment(shipmentObj) {
+          return db.collection('shipment').doc(currentUser.uid).set(shipmentObj);
+      }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
@@ -48,7 +51,8 @@ export function AuthProvider({ children }) {
         signup,
         login,
         logout,
-        resetPassword
+        resetPassword,
+        addShipment
     };
 
     return (

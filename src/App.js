@@ -4,10 +4,11 @@ import Signup from './views/Signup';
 import LandingPage from './views/LandingPage';
 import UserDashboard from './views/UserDashboard';
 import ForgotPassword from './views/ForgotPassword';
-import CreateShipment from './views/CreateShipment';
+import CreateShipment from './components/CreateShipment/CreateShipment';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Pricing from './views/Pricing';
+import Contact from './views/Contact';
 
 import {
     BrowserRouter as Router,
@@ -26,8 +27,9 @@ export default function App() {
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/forgot-password" component={ForgotPassword} />
-                        <Route path="/create-shipement" component={CreateShipment} />
+                        <Route path="/create-shipment" component={CreateShipment} />
                         <Route path="/pricing" component={Pricing} />
+                        <Route path="/contact" component={Contact} />
                     </Switch>
                 </Router>
             </div>

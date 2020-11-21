@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ServiceSpecs() {
     const classes = useStyles();
     const checked = useWindowPosition('header');
-    
     return (
         <div className={classes.root} id="service-specs">
             <Box className={classes.rootbox}>
@@ -58,6 +57,7 @@ export default function ServiceSpecs() {
                 <CardImg card={cards[2]} checked={checked} />
                 <div className="icon icon-info icon-round icon-lg"></div>
             </div>
+            
         </div>
     )
 }
