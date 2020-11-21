@@ -1,17 +1,21 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { makeStyles } from '@material-ui/core/styles';
+import InputField from '../FormModel/InputField';
 
-const useStyles = makeStyles((theme) => ({
-    
-}))
-
-export default function PaymentForm() {
-    const classes = useStyles();
+export default function PaymentForm(props) {
+  const {
+    formField: {
+      recipientFirst,
+      recipientLast,
+      recipientPhone,
+      recipientAddress,
+      recipientCity,
+      recipientState,
+      recipientZip,
+      recipientCountry,
+    }
+  } = props;
 
   return (
     <React.Fragment>
@@ -20,76 +24,28 @@ export default function PaymentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-          />
+          <InputField name={recipientFirst.name} label={recipientFirst.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-          />
+          <InputField name={recipientLast.name} label={recipientLast.label} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            id="recipientphone"
-            name="rphone"
-            label="Recipient Phone"
-            fullWidth
-            autoComplete="Recipient Phone"
-          />
+          <InputField name={recipientPhone.name} label={recipientPhone.label} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-          />
+          <InputField name={recipientAddress.name} label={recipientAddress.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-          />
+          <InputField name={recipientCity.name} label={recipientCity.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+          <InputField name={recipientState.name} label={recipientState.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-          />
+          <InputField name={recipientZip.name} label={recipientZip.label} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-          />
+          <InputField name={recipientCountry.name} label={recipientCountry.label} fullWidth />
         </Grid>
       </Grid>
     </React.Fragment>

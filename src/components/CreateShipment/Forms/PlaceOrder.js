@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-function CheckoutSuccess() {
+export default function PlaceOrder() {
   return (
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
@@ -14,5 +14,3 @@ function CheckoutSuccess() {
     </React.Fragment>
   );
 }
-
-export default CheckoutSuccess;

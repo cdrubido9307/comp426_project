@@ -22,9 +22,9 @@ import { useState } from 'react';
 
 import ShipmentForm from './Forms/ShipmentForm';
 import ShipmentFormSecond from './Forms/ShipmentFormSecond';
-import ReviewShipment from './Forms/ReviewShipment';
+import ReviewShipment from './ReviewShipment/ReviewShipment';
 
-import CheckoutSuccess from './Forms/CheckoutSuccess';
+import PlaceOrder from './Forms/PlaceOrder';
 import InitialValues from './FormModel/InitialValues';
 import ReviewShipmentModel from './FormModel/ReviewShipmentModel';
 import ValidationSchema from './FormModel/ValidationSchema';
@@ -107,7 +107,7 @@ export default function CreateShipment() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const history = useHistory();
-  const currentValidationSchema = ValidationSchema[activeStep];
+  const validationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
   function handleOnClose() {
@@ -120,6 +120,7 @@ export default function CreateShipment() {
 
   async function handleSubmitForm(values, actions) {
     await makeMeAPromise(1000);
+    values.status = false;
     console.log(values);
     alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
@@ -127,7 +128,7 @@ export default function CreateShipment() {
     setActiveStep(activeStep + 1);
   }
 
-  function _handleSubmit(values, actions) {
+  function handleSubmit(values, actions) {
     if (isLastStep) {
       handleSubmitForm(values, actions);
     } else {
@@ -172,12 +173,12 @@ export default function CreateShipment() {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                <CheckoutSuccess />
+                <PlaceOrder />
               ) : (
                   <Formik
                     initialValues={InitialValues}
-                    validationSchema={currentValidationSchema}
-                    onSubmit={_handleSubmit}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}
                   >
                     {({ isSubmitting }) => (
                       <Form id={formId}>

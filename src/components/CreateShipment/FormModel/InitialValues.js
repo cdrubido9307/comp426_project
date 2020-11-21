@@ -16,7 +16,7 @@ const {
         width,
         instructions,
         
-        recipinetFirst,
+        recipientFirst,
         recipientLast,
         recipientPhone,
         recipientAddress,
@@ -24,6 +24,8 @@ const {
         recipientState,
         recipientZip,
         recipientCountry,
+        status,
+        deliveryNumber,
     }
 } = ReviewShipmentModel;
 
@@ -35,13 +37,13 @@ export default {
     [senderCity.name]: '',
     [senderState.name]: '',
     [senderCountry.name]: '',
-    [senderZip.name]: 0,
-    [weight.name]: 0,
-    [length.name]: 0,
-    [height.name]: 0,
-    [width.name]: 0,
+    [senderZip.name]: '',
+    [weight.name]: '',
+    [length.name]: '',
+    [height.name]: '',
+    [width.name]: '',
     [instructions.name]: '',
-    [recipinetFirst.name]: '',
+    [recipientFirst.name]: '',
     [recipientLast.name]: '',
     [recipientPhone.name]: '',
     [recipientAddress.name]: '',

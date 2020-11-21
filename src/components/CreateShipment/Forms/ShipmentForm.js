@@ -46,7 +46,7 @@ export default function ShipmentForm(props) {
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Shipment Form
+                From
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -72,7 +72,7 @@ export default function ShipmentForm(props) {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <InputField name={senderCountry.name} label={senderCountry.label} fullWidth />
-                </Grid>    
+                </Grid>
             </Grid>
             <Typography className={classes.packages} variant="h6" gutterBottom>
                 Package Information
@@ -84,16 +84,14 @@ export default function ShipmentForm(props) {
                 <Grid item xs={12} sm={6}>
                     <InputField name={length.name} label={length.label} fullWidth />
                 </Grid>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                        <InputField name={height.name} label={height.label} fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputField name={width.name} label={width.label} fullWidth />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <InputField name={instructions.name} label={instructions.label} fullWidth />
-                    </Grid>
+                <Grid item xs={12} sm={6}>
+                    <InputField name={height.name} label={height.label} fullWidth />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <InputField name={width.name} label={width.label} fullWidth />
+                </Grid>
+                <Grid item xs={12}>
+                    <InputField name={instructions.name} label={instructions.label} fullWidth />
                 </Grid>
             </Grid>
         </React.Fragment>

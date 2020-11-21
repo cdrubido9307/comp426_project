@@ -66,8 +66,8 @@ export default {
             name: 'instructions',
             label: 'Additional Instructions',
         },
-        recipinetFirst: {
-            name: 'recipinetFirst',
+        recipientFirst: {
+            name: 'recipientFirst',
             label: 'First Name*',
             requiredErrorMsg: 'The first name of the recipient is required'
         },
