@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+import primes from '../../static/primes.js';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -106,9 +108,41 @@ function getStepContent(step) {
 export default function CreateShipment() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [values, setValues] = useState({});
   const history = useHistory();
   const validationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
+
+
+  // Random generator begins=================================================
+  function shuffle(array) {
+    let i = array.length,
+      j = 0,
+      temp;
+
+    while (i--) {
+
+      j = Math.floor(Math.random() * (i + 1));
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  function getRandom(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  function encryptedRandom(randArray) {
+    const rand = getRandom(9591);
+    let number = primes[rand] * randArray[getRandom(5)] * primes[rand];
+
+    return "DT" + number;
+  }
+
+  let ranNums = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  // Random generator ends=================================================
 
   function handleOnClose() {
     history.push("/user-dashboard");
@@ -118,19 +152,23 @@ export default function CreateShipment() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function handleSubmitForm(values, actions) {
+  const handleSubmitForm = async function(values, actions) {
     await makeMeAPromise(1000);
+
+    const shipmentNum = encryptedRandom(ranNums);
+    values.deliveryNumber = shipmentNum;
     values.status = false;
     console.log(values);
     alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
 
     setActiveStep(activeStep + 1);
+    return values;
   }
 
-  function handleSubmit(values, actions) {
+  async function handleSubmit(values, actions) {
     if (isLastStep) {
-      handleSubmitForm(values, actions);
+      setValues(await handleSubmitForm(values, actions));
     } else {
       setActiveStep(activeStep + 1);
       actions.setTouched({});
@@ -173,7 +211,7 @@ export default function CreateShipment() {
             </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
-                <PlaceOrder />
+                <PlaceOrder values = {values} />
               ) : (
                   <Formik
                     initialValues={InitialValues}
