@@ -9,6 +9,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Pricing from './views/Pricing';
 import Contact from './views/Contact';
+import About from './views/About';
 
 import {
     BrowserRouter as Router,
@@ -30,6 +31,7 @@ export default function App() {
                         <Route path="/create-shipment" component={CreateShipment} />
                         <Route path="/pricing" component={Pricing} />
                         <Route path="/contact" component={Contact} />
+                        <Route path="/about" component={About} />
                     </Switch>
                 </Router>
             </div>

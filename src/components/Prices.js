@@ -240,7 +240,6 @@ export default function Prices() {
     return (
         <div className={classes.root} id="header">
             <ThemeProvider theme={theme}>
-
                 <AppBar className={classes.menubar} elevation={0}>
                     <Toolbar className={classes.menutoolbar}>
                         <h1 className={classes.menubartitle}><span className={classes.fcolor}>d</span><span className={classes.scolor}>Tracker.</span></h1>

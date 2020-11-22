@@ -85,7 +85,11 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/user-dashboard")
+
+      // if (emailRef.current.value === 'egv@test.com') history.push("/contact");
+      // else history.push("/user-dashboard");
+
+      history.push("/user-dashboard");
     } catch {
       setError("Failed to login. Please verify your credentials!");
     }
