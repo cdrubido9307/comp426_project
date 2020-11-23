@@ -12,12 +12,14 @@ import { Link } from 'react-router-dom';
 // menu items
 export const mainListItems = (
     <div>
-        <ListItem button>
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItem>
+        <Link to='/user-dashboard' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+            </ListItem>
+        </Link>
 
         <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
             <ListItem button>
@@ -29,12 +31,12 @@ export const mainListItems = (
         </Link>
 
         <Link to='/track-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
-        <ListItem button>
-            <ListItemIcon>
-                <ExploreSharpIcon />
-            </ListItemIcon>
-            <ListItemText primary="Track Shipments" />
-        </ListItem>
+            <ListItem button>
+                <ListItemIcon>
+                    <ExploreSharpIcon />
+                </ListItemIcon>
+                <ListItemText primary="Track Shipments" />
+            </ListItem>
         </Link>
 
         <Link to='/contact' style={{ color: '#212121', textDecoration: 'none' }}>
