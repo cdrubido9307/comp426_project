@@ -28,12 +28,14 @@ export const mainListItems = (
             </ListItem>
         </Link>
 
+        <Link to='/track-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
         <ListItem button>
             <ListItemIcon>
                 <ExploreSharpIcon />
             </ListItemIcon>
             <ListItemText primary="Track Shipments" />
         </ListItem>
+        </Link>
 
         <Link to='/contact' style={{ color: '#212121', textDecoration: 'none' }}>
             <ListItem button>

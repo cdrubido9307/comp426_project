@@ -25,12 +25,7 @@ export default function Chart(props) {
     <React.Fragment>
       <Title>Your deliveries are being handle by</Title>
       <div>
-      <List>
-          <ListItem>
-          <ListItemText id="profile-image" primary="Profile Picture" />
-          <ListItemText id="phone" primary="Phone" />
-        </ListItem>
-        </List>
+      
         {props.shipment.filter(s => s.status == false).map((s) => (
           <List>
           <ListItem>
@@ -41,7 +36,7 @@ export default function Chart(props) {
             />
           </ListItemAvatar>
           <ListItemText id={s.driver.firstName} primary={`${s.driver.firstName} ${s.driver.lastName}`} />
-          <ListItemText id={s.driver.firstName} primary={`${s.driver.phone}`} />
+          <ListItemText id={s.driver.firstName} primary={`Phone: ${s.driver.phone}`} />
         </ListItem>
         </List>
         ))}

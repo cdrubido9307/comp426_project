@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Pricing from './views/Pricing';
 import Contact from './views/Contact';
 import About from './views/About';
+import TrackShipment from './views/TrackShipment';
 
 import {
     BrowserRouter as Router,
@@ -25,6 +26,7 @@ export default function App() {
                     <Switch>
                         <Route exact path="/" component={LandingPage} />
                         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
+                        <PrivateRoute path="/track-shipment" component={TrackShipment} />
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/forgot-password" component={ForgotPassword} />
