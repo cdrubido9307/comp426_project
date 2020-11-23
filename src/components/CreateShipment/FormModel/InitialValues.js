@@ -27,7 +27,8 @@ const {
         status,
         deliveryNumber,
         date,
-        clientID
+        clientID,
+        driver
     }
 } = ReviewShipmentModel;
 

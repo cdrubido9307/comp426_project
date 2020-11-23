@@ -35,6 +35,8 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
 
 import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
+import { addMinutes } from 'date-fns/esm';
 
 const theme = createMuiTheme({
   palette: {
@@ -114,8 +116,7 @@ export default function CreateShipment() {
   const history = useHistory();
   const validationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const { addShipment, currentUser } = useAuth();
-
+  const { addShipment, currentUser, drivers } = useAuth();
 
   // Random generator begins=================================================
   function shuffle(array) {
@@ -164,11 +165,33 @@ export default function CreateShipment() {
     const currentDate = new Date();
     const date = currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear();
     values.date = date;
+    const driver = Math.floor(Math.random() * 4);
+    switch (driver) {
+      case 0:
+        drivers[0].pool.push(values.deliveryNumber);
+        values.driver = drivers[0];
+        break;
+      case 1:
+        drivers[1].pool.push(values.deliveryNumber);
+        values.driver = drivers[1];
+        break;
+      case 2:
+        drivers[2].pool.push(values.deliveryNumber);
+        values.driver = drivers[2];
+        break;
+      case 3:
+        drivers[3].pool.push(values.deliveryNumber);
+        values.driver = drivers[3];
+        break;
+      default:
+        console.log("Driver does not exits");
+    }
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
     await addShipment(values);
     return values;
   }
+  console.log(values);
 
   async function handleSubmit(values, actions) {
     if (isLastStep) {

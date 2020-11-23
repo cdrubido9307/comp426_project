@@ -73,7 +73,7 @@ export default function SignIn() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { currentUser, login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -85,10 +85,6 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-
-      // if (emailRef.current.value === 'egv@test.com') history.push("/contact");
-      // else history.push("/user-dashboard");
-
       history.push("/user-dashboard");
     } catch {
       setError("Failed to login. Please verify your credentials!");
