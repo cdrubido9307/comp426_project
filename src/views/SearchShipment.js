@@ -20,20 +20,12 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../components/ListItems';
 import Chart from '../components/Chart';
 import Expenses from '../components/Expenses';
-import Shippings from '../components/Shippings';
+import ShippingsSearch from '../components/ShippingsSearch';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { db } from '../firebase';
-import { GoogleMap, LoadScript, Marker, GoogleApiWrapper, Map } from '@react-google-maps/api';
-import Geocode from "react-geocode";
-
-Geocode.setApiKey("AIzaSyBzZTUso8wmNfmjDzvD1agPDwcGBUsvlR4");
-Geocode.setLanguage("en");
-Geocode.setRegion("us");
-const google = window.google
-//const directionService = new google.maps.DirectionsService();
 
 const drawerWidth = 240;
 
@@ -96,17 +88,11 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
-  appBarSpacer: {
-    marginTop: '400px'
-  },
+  appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    marginTop: '2rem',
     height: '100vh',
     overflow: 'auto',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -126,16 +112,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const containerStyle = {
-  width: '85%',
-  height: '85%'
-};
-
-const center = {
-  lat: 35.913200,
-  lng: -79.055847
-};
-
 export default function Dashboard() {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
@@ -144,8 +120,6 @@ export default function Dashboard() {
   const history = useHistory();
   const [open, setOpen] = useState(true);
   const [shipment, setShipments] = useState([]);
-  const [positions, setPositions] = useState([]);
-  const [path, setPath] = useState([]);
   const [loading, setLoading] = useState(false);
   const shipmentRef = db.collection('shipments').where('clientId', '==', currentUser.uid);
   const handleDrawerOpen = () => {
@@ -166,47 +140,14 @@ export default function Dashboard() {
     }
   }
 
-  function getPositions(address) {
-    const pos = {}
-
-    Geocode.fromAddress(address).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-        pos.lat = lat;
-        pos.lng = lng;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-
-    return pos;
-  }
-
   function getShipments() {
     setLoading(true);
     shipmentRef.onSnapshot((querySnapshot) => {
       const items = [];
-      const add = [];
-      const p = [];
-      const paths = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
       });
-      const tmp = items.filter(s => s.status == false);
-      for (let i = 0; i < tmp.length; i++) {
-        add.push({ from: tmp[i].driver.currentLocation, pick: tmp[i].senderAddress + " " + tmp[i].senderCity + " " + tmp[i].senderState, dest: tmp[i].recipientAddress + " " + tmp[i].recipientCity + " " + tmp[i].recipientState });
-      }
-
-      for (let i = 0; i < add.length; i++) {
-        p.push({ from: getPositions(add[i].from), pick: getPositions(add[i].pick), dest: getPositions(add[i].dest) });
-      }
-      for (let i = 0; i < p.length; i++) {
-        paths.push([p[i].from, p[i].pick, p[i].dest]);
-      }
       setShipments(items);
-      setPositions(p);
-      setPath(paths);
       setLoading(false);
     })
   }
@@ -215,28 +156,13 @@ export default function Dashboard() {
     getShipments();
   }, []);
 
-  const options = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
-    clickable: false,
-    draggable: false,
-    editable: false,
-    visible: true,
-    radius: 30000,
-    paths: path[0],
-    zIndex: 1
-  };
-
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const clientRef = db.collection('client');
 
   function handleGetUser() {
-    if (currentUser != null) {
+    if (currentUser != null){
       clientRef.doc(currentUser.uid).get().then(snapshot => setUser(snapshot.data()));
-    }
+    } 
   }
 
   useEffect(() => {
@@ -261,6 +187,7 @@ export default function Dashboard() {
     setAnchorEl(false);
   };
 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -279,9 +206,9 @@ export default function Dashboard() {
             Shipping Dashboard
           </Typography>
           <Typography className={classes.username} variant="subtitle1" gutterBottom>
-            {name}
-          </Typography>
-
+  {name}
+      </Typography>
+          
           <div>
             <IconButton
               aria-label="account of current user"
@@ -332,18 +259,17 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            {/* Recent Orders */}
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <ShippingsSearch shipment={shipment}/>
+              </Paper>
+            </Grid>
+          </Grid>
 
-        <LoadScript
-          googleMapsApiKey="AIzaSyBzZTUso8wmNfmjDzvD1agPDwcGBUsvlR4"
-        >
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-          >
-            
-          </GoogleMap>
-        </LoadScript>
+        </Container>
       </main>
     </div>
   );

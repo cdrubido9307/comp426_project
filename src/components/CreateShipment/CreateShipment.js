@@ -191,7 +191,6 @@ export default function CreateShipment() {
     await addShipment(values);
     return values;
   }
-  console.log(values);
 
   async function handleSubmit(values, actions) {
     if (isLastStep) {

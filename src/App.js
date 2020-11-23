@@ -11,6 +11,8 @@ import Pricing from './views/Pricing';
 import Contact from './views/Contact';
 import About from './views/About';
 import TrackShipment from './views/TrackShipment';
+import AdminDashboard from './views/AdminDashboard';
+import SearchShipment from './views/SearchShipment';
 
 import {
     BrowserRouter as Router,
@@ -27,6 +29,8 @@ export default function App() {
                         <Route exact path="/" component={LandingPage} />
                         <PrivateRoute path="/user-dashboard" component={UserDashboard} />
                         <PrivateRoute path="/track-shipment" component={TrackShipment} />
+                        <PrivateRoute path="/search-shipment" component={SearchShipment} />
+                        <Route exact path="/admin-dashboard" component={AdminDashboard} />
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/forgot-password" component={ForgotPassword} />

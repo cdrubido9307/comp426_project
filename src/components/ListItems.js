@@ -6,6 +6,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import ExploreSharpIcon from '@material-ui/icons/ExploreSharp';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { Link } from 'react-router-dom';
 
@@ -36,6 +37,15 @@ export const mainListItems = (
                     <ExploreSharpIcon />
                 </ListItemIcon>
                 <ListItemText primary="Track Shipments" />
+            </ListItem>
+        </Link>
+
+        <Link to='/search-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="Search Shipment" />
             </ListItem>
         </Link>
 

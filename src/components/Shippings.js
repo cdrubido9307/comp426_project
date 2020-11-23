@@ -8,9 +8,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import DeleteIcon from '@material-ui/icons/Delete';
+import CancelIcon from '@material-ui/icons/Cancel';
+import Checkbox from '@material-ui/core/Checkbox';
 import EditIcon from '@material-ui/icons/Edit';
 import Title from './Title';
+import { db } from '../firebase';
+import { Typography } from '@material-ui/core';
+import { EcoRounded } from '@material-ui/icons';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -24,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Orders(props) {
   const classes = useStyles();
+  let changed = ['flag'];
+  async function onCancel(e) {
+    e.stopPropagation();
+    await db.collection('shipments').doc(e.target.value).delete();
+  }
   return (
     <React.Fragment>
       <Title>Recent Shipments</Title>
@@ -36,17 +45,23 @@ export default function Orders(props) {
             <TableCell>Ship To</TableCell>
             <TableCell>Ship from</TableCell>
             <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Cancel</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.shipment.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
+              <TableCell >{row.date}</TableCell>
               <TableCell>{row.deliveryNumber}</TableCell>
               <TableCell>{row.senderFirst}</TableCell>
               <TableCell>{row.recipientAddress}</TableCell>
               <TableCell>{row.senderAddress}</TableCell>
-              <TableCell align="right">{row.status ? <CheckCircleIcon/>: <TimelapseIcon/>}</TableCell>
+              <TableCell align="right">{row.status ? <CheckCircleIcon/> : <TimelapseIcon />}</TableCell>
+              <TableCell align="right">{row.status ? " " : <Checkbox onChange={(e) => {onCancel(e)}}
+                color="secondary"
+                value={row.deliveryNumber}
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
+              />}</TableCell>
             </TableRow>
           ))}
         </TableBody>

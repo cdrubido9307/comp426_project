@@ -20,7 +20,7 @@ const drivers = [
         id: 0,
         firstName: "John",
         lastName: "Doe",
-        currentLocation: "",
+        currentLocation: "5450 New Hope Commons Dr, Durham, NC 27707",
         pool: [],
         avatarPic: JohnImg,
         phone: "555-555-5555"
@@ -29,7 +29,7 @@ const drivers = [
         id: 1,
         firstName: "Jane",
         lastName: "Doe",
-        currentLocation: "",
+        currentLocation: "8210 Renaissance Pkwy, Durham, NC 27713",
         pool: [],
         avatarPic: JaneImg,
         phone: "888-888-8888"
@@ -38,7 +38,7 @@ const drivers = [
         id: 2,
         firstName: "Jose",
         lastName: "Rodriguez",
-        currentLocation: "",
+        currentLocation: "100 Meadowmont Village Cir #101, Chapel Hill, NC 27517",
         pool: [],
         avatarPic: JoseImg,
         phone: "444-444-4444"
@@ -47,10 +47,10 @@ const drivers = [
         id: 3,
         firstName: "Charles",
         lastName: "Smith",
-        currentLocation: "",
+        currentLocation: "430 W Martin St, Raleigh, NC 27603",
         pool: [],
         avatarPic: CharlesImg,
-        phone: 777-777-7777
+        phone: "777-777-7777"
     },
 ];
 
