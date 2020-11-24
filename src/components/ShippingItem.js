@@ -31,7 +31,7 @@ export default function ShippingItem() {
         <React.Fragment>
             <Typography className={classes.packages} variant="h6" gutterBottom>
                 Package Information
-        </Typography>
+            </Typography>
             <Grid className={classes.bottom} container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <TextField

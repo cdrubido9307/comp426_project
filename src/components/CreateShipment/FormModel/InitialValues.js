@@ -15,7 +15,6 @@ const {
         height,
         width,
         instructions,
-        
         recipientFirst,
         recipientLast,
         recipientPhone,
@@ -26,7 +25,9 @@ const {
         recipientCountry,
         status,
         deliveryNumber,
-        date
+        date,
+        clientID,
+        driver,
     }
 } = ReviewShipmentModel;
 

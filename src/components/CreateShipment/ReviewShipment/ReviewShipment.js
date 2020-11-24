@@ -6,18 +6,18 @@ import RecipientInfo from './RecipientInfo';
 import ShipmentDetails from './ShipmentDetails';
 
 export default function ReviewShipment() {
-  const { values: formValues } = useFormikContext();
-  return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Shipment Summary
-      </Typography>
-      <ShipmentDetails formValues={formValues} />
-      <Grid container spacing={2}>
-        <SenderInfo formValues={formValues} />
-        <RecipientInfo formValues={formValues} />
-      </Grid>
-
-    </React.Fragment>
-  );
+    const { values: formValues } = useFormikContext();
+    
+    return (
+        <React.Fragment>
+            <Typography variant="h6" gutterBottom>
+                Shipment Summary
+            </Typography>
+            <ShipmentDetails formValues={formValues} />
+            <Grid container spacing={2}>
+                <SenderInfo formValues={formValues} />
+                <RecipientInfo formValues={formValues} />
+            </Grid>
+        </React.Fragment>
+    );
 }

@@ -34,18 +34,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    lockout: {
-        // No properties
-    },
-    input: {
-        //
-    },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: '#f57c00',
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(1),
     },
     submit: {
@@ -116,17 +110,17 @@ export default function SignIn() {
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon className={classes.lockout} />
+                        <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Forgot Password
-        </Typography>
+                    </Typography>
                     <br />
                     {error && <Alert severity="error">{error}</Alert>}
                     <ThemeProvider theme={theme}>
                         <form onSubmit={handleSubmit}
                             className={classes.form} noValidate>
-                            <TextField className={classes.input}
+                            <TextField
                                 variant="outlined"
                                 margin="normal"
                                 required
@@ -145,11 +139,10 @@ export default function SignIn() {
                                 className={classes.submit}
                             >
                                 Reset
-            </Button>
+                            </Button>
                         </form>
                     </ThemeProvider>
                 </div>
-
             </Container>
         </div>
     );

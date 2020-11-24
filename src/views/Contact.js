@@ -1,20 +1,17 @@
 import React, { useRef, useState } from 'react';
 import { db } from "../firebase";
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import EmailIcon from '@material-ui/icons/Email';
 import Typography from '@material-ui/core/Typography';
-import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
-import { Link as RDLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { AppBar, Toolbar } from '@material-ui/core';
@@ -50,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F57C00',
         color: '#FFF',
         '&:hover': {
-            backgroundColor: '#FB8C00'
+            backgroundColor: '#FB8C00',
         },
     },
     toolbar: {
-        background: 'none'
+        background: 'none',
     },
     close: {
         color: '#F57C00',
@@ -122,7 +119,7 @@ export default function Contact() {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Contact Form
-                </Typography>
+                    </Typography>
                     <br />
                     <ThemeProvider theme={theme}>
                         <form onSubmit={handleSubmit} className={classes.form} noValidate>
@@ -170,7 +167,7 @@ export default function Contact() {
                                 variant="contained"
                                 className={classes.submit}
                             >
-                                Message Developers
+                                Send Message
                         </Button>
                         </form>
                     </ThemeProvider>

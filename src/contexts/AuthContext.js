@@ -1,8 +1,58 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import { db } from '../firebase';
+import JohnImg from '../assets/john.png';
+import JaneImg from '../assets/jane.png';
+import JoseImg from '../assets/jose.png';
+import CharlesImg from '../assets/charles.png';
 
 const AuthContext = React.createContext();
+const adminRules = {
+    "rules": {
+        "adminContent": {
+            ".read": "auth.token.admin === true",
+            ".write": "auth.token.admin === true",
+        }
+    }
+};
+const drivers = [
+    {
+        id: 0,
+        firstName: "John",
+        lastName: "Doe",
+        currentLocation: "5450 New Hope Commons Dr, Durham, NC 27707",
+        pool: [],
+        avatarPic: JohnImg,
+        phone: "555-555-5555"
+    },
+    {
+        id: 1,
+        firstName: "Jane",
+        lastName: "Doe",
+        currentLocation: "8210 Renaissance Pkwy, Durham, NC 27713",
+        pool: [],
+        avatarPic: JaneImg,
+        phone: "888-888-8888"
+    },
+    {
+        id: 2,
+        firstName: "Jose",
+        lastName: "Rodriguez",
+        currentLocation: "100 Meadowmont Village Cir #101, Chapel Hill, NC 27517",
+        pool: [],
+        avatarPic: JoseImg,
+        phone: "444-444-4444"
+    },
+    {
+        id: 3,
+        firstName: "Charles",
+        lastName: "Smith",
+        currentLocation: "430 W Martin St, Raleigh, NC 27603",
+        pool: [],
+        avatarPic: CharlesImg,
+        phone: "777-777-7777"
+    },
+];
 
 export function useAuth() {
     return useContext(AuthContext);
@@ -13,12 +63,16 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     function signup(first, last, email, password) {
-        return auth.createUserWithEmailAndPassword(email, password).then(function(data) {
+        return auth.createUserWithEmailAndPassword(email, password).then(function (data) {
             db.collection('client').doc(data.user.uid).set({
                 firstName: first,
                 lastName: last
             })
         });
+    }
+
+    function setAdmin(email) {
+
     }
 
     function login(email, password) {
@@ -27,15 +81,15 @@ export function AuthProvider({ children }) {
 
     function logout() {
         return auth.signOut()
-      }
-    
-      function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email)
-      }
+    }
 
-      function addShipment(shipmentObj) {
-          return db.collection('shipment').doc(currentUser.uid).set(shipmentObj);
-      }
+    function resetPassword(email) {
+        return auth.sendPasswordResetEmail(email)
+    }
+
+    function addShipment(shipmentObj) {
+        return db.collection('shipments').doc(shipmentObj.deliveryNumber).set(shipmentObj);
+    }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -52,7 +106,8 @@ export function AuthProvider({ children }) {
         login,
         logout,
         resetPassword,
-        addShipment
+        addShipment,
+        drivers
     };
 
     return (

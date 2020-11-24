@@ -6,7 +6,6 @@ import useWindowPosition from '../hook/useWindowPosition.js';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '80vh',
@@ -22,23 +21,24 @@ const useStyles = makeStyles((theme) => ({
     sertitle: {
         fontFamily: 'Nunito',
         color: '#4A4B4D',
-        fontWeight: '600'
+        fontWeight: '600',
     },
     mission: {
         fontFamily: 'Nunito',
         color: '#6B6C6E',
         marginLeft: '21.5%',
         marginRight: '21.5%',
-        fontWeight: '400'
+        fontWeight: '400',
     },
     rootbox: {
-        marginTop: '4%'
+        marginTop: '4%',
     }
 }));
 
 export default function ServiceSpecs() {
     const classes = useStyles();
     const checked = useWindowPosition('header');
+
     return (
         <div className={classes.root} id="service-specs">
             <Box className={classes.rootbox}>
@@ -57,7 +57,6 @@ export default function ServiceSpecs() {
                 <CardImg card={cards[2]} checked={checked} />
                 <div className="icon icon-info icon-round icon-lg"></div>
             </div>
-            
         </div>
     )
 }

@@ -16,7 +16,6 @@ const {
         height,
         width,
         instructions,
-
         recipientFirst,
         recipientLast,
         recipientPhone,
@@ -38,13 +37,12 @@ export default [
         [senderState.name]: Yup.string().nullable().required(`${senderState.requiredErrorMsg}`),
         [senderZip.name]: Yup.string().required(`${senderZip.requiredErrorMsg}`).test('len', `${senderZip.invalidErrorMsg}`, val => val && val.length === 5),
         [senderCountry.name]: Yup.string().required(`${senderCountry.requiredErrorMsg}`),
-
         [weight.name]: Yup.string().required(`${weight.requiredErrorMsg}`),
         [length.name]: Yup.string().required(`${length.requiredErrorMsg}`),
         [height.name]: Yup.string().required(`${height.requiredErrorMsg}`),
         [width.name]: Yup.string().required(`${width.requiredErrorMsg}`),
     }),
-    
+
     Yup.object().shape({
         [recipientFirst.name]: Yup.string().required(`${recipientFirst.requiredErrorMsg}`),
         [recipientLast.name]: Yup.string().required(`${recipientLast.requiredErrorMsg}`),

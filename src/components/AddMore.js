@@ -9,9 +9,8 @@ import ShippingItem from './ShippingItem';
 
 const useStyles = makeStyles((theme) => ({
     info: {
-        marginTop: 30
+        marginTop: 30,
     },
-    
 }))
 
 export default function AddMore() {
@@ -27,15 +26,15 @@ export default function AddMore() {
     return (
         <Grid item xs={12}>
             {but && <Grid>
-            <Fab className={classes.info} size="small" color="primary" aria-label="add">
-                <AddIcon onClick={handleOnclick}/>
-            </Fab>
-            <Typography className={classes.toship} variant="subtitle1" gutterBottom>
-                Add More
-                    </Typography>
+                <Fab className={classes.info} size="small" color="primary" aria-label="add">
+                    <AddIcon onClick={handleOnclick} />
+                </Fab>
+                <Typography className={classes.toship} variant="subtitle1" gutterBottom>
+                    Add More
+                </Typography>
             </Grid>}
             <Grid>
-            {visible && <ShippingItem/>} 
+                {visible && <ShippingItem />}
             </Grid>
         </Grid>
     );

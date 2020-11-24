@@ -6,42 +6,50 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import ExploreSharpIcon from '@material-ui/icons/ExploreSharp';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 
-// menu items
 export const mainListItems = (
     <div>
-        <ListItem button>
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItem>
-
-        <ListItem button>
-            <ListItemIcon>
-                <Link to='/create-shipement' style={{ color: '#707070', textDecoration: 'none' }}>
+        <Link to='/user-dashboard' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+            </ListItem>
+        </Link>
+        <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
                     <LocalShippingIcon />
-                </Link>
-            </ListItemIcon>
-            <Link to='/create-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+                </ListItemIcon>
                 <ListItemText primary="Create Shipment" />
-            </Link>
-        </ListItem>
-
-        <ListItem button>
-            <ListItemIcon>
-                <ExploreSharpIcon />
-            </ListItemIcon>
-            <ListItemText primary="Track Shipments" />
-        </ListItem>
-
-        <ListItem button>
-            <ListItemIcon>
-                <ContactSupportIcon />
-            </ListItemIcon>
-            <ListItemText primary="Contact Us" />
-        </ListItem>
+            </ListItem>
+        </Link>
+        <Link to='/track-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <ExploreSharpIcon />
+                </ListItemIcon>
+                <ListItemText primary="Track Shipments" />
+            </ListItem>
+        </Link>
+        <Link to='/search-shipment' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary="Search Shipment" />
+            </ListItem>
+        </Link>
+        <Link to='/contact' style={{ color: '#212121', textDecoration: 'none' }}>
+            <ListItem button>
+                <ListItemIcon>
+                    <ContactSupportIcon />
+                </ListItemIcon>
+                <ListItemText primary="Contact Us" />
+            </ListItem>
+        </Link>
     </div>
 );

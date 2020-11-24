@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import {
-    AppBar,
-    Button,
-    IconButton,
-    Toolbar,
-    Hidden
-} from '@material-ui/core';
 import Background from '../assets/pricingimg.jpg';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
@@ -20,7 +12,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -31,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
+import { AppBar, Button, IconButton, Toolbar, Hidden } from '@material-ui/core';
 
 const theme = createMuiTheme({
     palette: {
@@ -240,7 +232,6 @@ export default function Prices() {
     return (
         <div className={classes.root} id="header">
             <ThemeProvider theme={theme}>
-
                 <AppBar className={classes.menubar} elevation={0}>
                     <Toolbar className={classes.menutoolbar}>
                         <h1 className={classes.menubartitle}><span className={classes.fcolor}>d</span><span className={classes.scolor}>Tracker.</span></h1>

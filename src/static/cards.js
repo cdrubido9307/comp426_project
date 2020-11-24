@@ -9,16 +9,14 @@ const cards = [
         icon: LocalShippingSharpIcon,
         color: "blue",
         time: 1500,
-    }, 
-
+    },
     {
         title: "Reliability",
         description: "Our system is fully insured and abided by the U.S. Department of Transportation Regulations. Our drivers are fully background checked.",
         icon: SecuritySharpIcon,
         color: "pink",
         time: 1500,
-    }, 
-
+    },
     {
         title: "Tracking",
         description: "Pull the plug on paper with our real time tracking system, backed with Google Maps API, allowing users to check the current status of their merchandise.",

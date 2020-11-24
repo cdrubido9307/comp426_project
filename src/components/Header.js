@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import {
-    AppBar,
-    Button,
-    Collapse,
-    IconButton,
-    Toolbar,
-    Hidden
-} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Background from '../assets/bgimg.jpg';
 import { Link as Scroll } from 'react-scroll';
@@ -15,7 +7,6 @@ import { Link as RDLink } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InfoIcon from '@material-ui/icons/Info';
@@ -25,6 +16,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import orange from '@material-ui/core/colors/orange';
+import { AppBar, Button, Collapse, IconButton, Toolbar, Hidden } from '@material-ui/core';
 
 const theme = createMuiTheme({
     palette: {
@@ -36,6 +28,7 @@ const theme = createMuiTheme({
         },
     },
 });
+
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -78,45 +71,45 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         height: '95vh',
-        fontFamily: 'Nunito'
+        fontFamily: 'Nunito',
     },
     menubar: {
         background: 'none',
-        position: 'static'
+        position: 'static',
     },
     icon: {
         color: '#FFF',
-        fontSize: '2rem'
+        fontSize: '2rem',
     },
     menubartitle: {
         flexGrow: '1',
         display: "flex",
-        fontSize: '2.5rem'
+        fontSize: '2.5rem',
     },
     menutoolbar: {
         width: '80%',
-        margin: '0 auto'
+        margin: '0 auto',
     },
     toolbarlinks: {
         padding: theme.spacing(1.5),
         '&:hover': {
-            color: '#F57C00'
+            color: '#F57C00',
         },
         color: '#FFF',
-        fontSize: '1.6rem'
+        fontSize: '1.6rem',
     },
     fcolor: {
         color: '#FFF',
-        fontWeight: '900'
+        fontWeight: '900',
     },
     scolor: {
         color: '#FF9800',
-        fontWeight: '900'
+        fontWeight: '900',
     },
     mainmessage: {
         fontSize: '2.8rem',
         marginTop: '11rem',
-        fontWeight: '900'
+        fontWeight: '900',
     },
     expand: {
         color: '#FFF',
@@ -133,14 +126,14 @@ const useStyles = makeStyles((theme) => ({
     btn: {
         margin: theme.spacing(0.5),
         '&:hover': {
-            backgroundColor: '#F57C00'
+            backgroundColor: '#F57C00',
         },
         color: '#FFF',
-        backgroundColor: '#FF9800'
+        backgroundColor: '#FF9800',
     },
     iconbtn: {
         '&:hover': {
-            backgroundColor: '#FF9800'
+            backgroundColor: '#FF9800',
         },
         color: '#111214',
     }
@@ -262,4 +255,3 @@ export default function Header() {
         </div>
     );
 }
-

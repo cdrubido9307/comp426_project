@@ -7,7 +7,7 @@ import InputField from '../FormModel/InputField';
 const useStyles = makeStyles((theme) => ({
     bitem: {
         marginTop: 3,
-        backgroundColor: '#FFB74D'
+        backgroundColor: '#FFB74D',
     },
     toship: {
         marginTop: 5,

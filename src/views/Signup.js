@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#f57c00',
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -49,11 +49,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#F57C00',
         color: '#FFF',
         '&:hover': {
-            backgroundColor: '#FB8C00'
+            backgroundColor: '#FB8C00',
         },
     },
     toolbar: {
-        background: 'none'
+        background: 'none',
     },
     close: {
         color: '#F57C00',
@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-
     const firstRef = useRef();
     const lastRef = useRef();
     const emailRef = useRef();
@@ -88,7 +87,7 @@ export default function SignUp() {
         } catch {
             setError('Failed to create an account');
         }
-        setLoading(false);
+        setLoading(false)
     }
 
     function handleOnClose() {
@@ -120,7 +119,7 @@ export default function SignUp() {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign Up
-        </Typography>
+                    </Typography>
                     <br />
                     {error && <Alert severity="error">{error}</Alert>}
                     <ThemeProvider theme={theme}>
@@ -198,13 +197,13 @@ export default function SignUp() {
                                 className={classes.submit}
                             >
                                 Sign Up
-            </Button>
+                            </Button>
                             <Grid container justify="flex-end">
                                 <Grid item>
                                     <RDLink to='/login' style={{ textDecoration: 'none' }}>
                                         <Link href="#" variant="body2">
                                             Already have an account? Sign in
-                </Link>
+                                        </Link>
                                     </RDLink>
                                 </Grid>
                             </Grid>
