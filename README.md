@@ -24,7 +24,6 @@ As mentioned, the team is planning to implement a company-side platform for the 
 
 ## Technologies Used
 
-|--|--|
 |JavaScript Framework|React|
 |CSS Framework|Material UI|
 |Database API|Firebase|
