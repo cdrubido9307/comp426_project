@@ -22,16 +22,13 @@ export default function Chart(props) {
 
     return (
         <React.Fragment>
-            <Title>Your deliveries are being handle by</Title>
+            <Title>Your deliveries are being handled by</Title>
             <div>
                 {props.shipment.filter(s => s.status == false).map((s) => (
                     <List>
                         <ListItem>
                             <ListItemAvatar>
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src={s.driver.avatarPic}
-                                />
+                                <Avatar alt="Remy Sharp" src={s.driver.avatarPic} />
                             </ListItemAvatar>
                             <ListItemText id={s.driver.firstName} primary={`${s.driver.firstName} ${s.driver.lastName}`} />
                             <ListItemText id={s.driver.firstName} primary={`Phone: ${s.driver.phone}`} />

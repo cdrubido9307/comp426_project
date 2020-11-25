@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,13 +7,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
 import Checkbox from '@material-ui/core/Checkbox';
-import EditIcon from '@material-ui/icons/Edit';
 import Title from './Title';
 import { db } from '../firebase';
-import { Typography } from '@material-ui/core';
-import { EcoRounded } from '@material-ui/icons';
 
 function preventDefault(event) {
     event.preventDefault();
@@ -43,7 +38,7 @@ export default function Orders(props) {
                         <TableCell>Delivery Number</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Ship To</TableCell>
-                        <TableCell>Ship from</TableCell>
+                        <TableCell>Ship From</TableCell>
                         <TableCell align="right">Status</TableCell>
                         <TableCell align="right">Cancel</TableCell>
                     </TableRow>

@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
-        background: 'rgba(0,0,0,0.4)',
+        background: 'rgba(0, 0, 0, 0.4)',
         margin: '20px',
     },
     media: {
@@ -37,7 +37,6 @@ export default function ServiceCard({ place }) {
                 <CardMedia
                     className={classes.media}
                     image={place.image}
-                    title="Contemplative Reptile"
                 />
                 <CardContent>
                     <Typography className={classes.cardtitle} gutterBottom variant="h5" component="h2">

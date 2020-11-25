@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import InputField from '../FormModel/InputField';
 
-export default function PaymentForm(props) {
+export default function ShipmentFormSecond(props) {
     const {
         formField: {
             recipientFirst,

@@ -1,24 +1,14 @@
 import React, { useState } from 'react';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import TimelapseIcon from '@material-ui/icons/Timelapse';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
-import Checkbox from '@material-ui/core/Checkbox';
-import EditIcon from '@material-ui/icons/Edit';
 import Title from './Title';
 import { db } from '../firebase';
-import { Typography } from '@material-ui/core';
-import { EcoRounded } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
-import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import { useRef } from 'react';
 
@@ -145,7 +135,7 @@ export default function Orders(props) {
             <br />
             <br />
             {loading && <div>
-                <Title>Found shipment</Title>
+                <Title>Found Shipment</Title>
                 <Table size="small">
                     <TableHead>
                         <TableRow>
@@ -159,9 +149,9 @@ export default function Orders(props) {
                         {
                             <TableRow>
                                 <TableCell>{newVal.title}</TableCell>
-                                <TableCell >{newVal.date}</TableCell>
-                                <TableCell >{newVal.from}</TableCell>
-                                <TableCell >{newVal.to}</TableCell>
+                                <TableCell>{newVal.date}</TableCell>
+                                <TableCell>{newVal.from}</TableCell>
+                                <TableCell>{newVal.to}</TableCell>
                             </TableRow>
                         }
                     </TableBody>
